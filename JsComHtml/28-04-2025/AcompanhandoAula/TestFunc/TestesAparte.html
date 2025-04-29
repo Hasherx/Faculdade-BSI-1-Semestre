@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Idades com HTML</title>
+</head>
+<body>
+	<h2>Digite idades:</h2>
+	<input type="number" id="idadeInput" placeholder="Digite a idade">
+	<button onclick="adicionarIdade()">Adicionar</button>
+	<button onclick="calcularMedia()">Calcular Média</button>
+	<p id="resultado"></p>
+
+	<script>
+		const idades = [];
+
+		function adicionarIdade() {
+			const input = document.getElementById("idadeInput");
+			const valor = parseInt(input.value);
+			if (!isNaN(valor)) {
+				idades.push(valor);
+				input.value = "";
+				input.focus();
+			} else {
+				alert("Digite uma idade válida.");
+			}
+		}
+
+		function calcularMedia() {
+			if (idades.length === 0) {
+				alert("Nenhuma idade adicionada.");
+				return;
+			}
+			const total = idades.reduce((soma, idade) => soma + idade, 0);
+			const media = total / idades.length;
+			document.getElementById("resultado").innerText = 
+				"Total de idades: " + total + " | Média: " + media.toFixed(2);
+		}
+	</script>
+</body>
+</html>
